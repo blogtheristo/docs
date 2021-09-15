@@ -30,7 +30,7 @@ Dapr can use any Redis instance - either containerized on your local dev machine
 {{< tabs "Self-Hosted" "Kubernetes" "Azure" "AWS" "GCP" >}}
 
 {{% codetab %}}
-Redis is automatically installed in self-hosted environments by the Dapr CLI as part of the initialization process. You are all set and can skip to the [next steps](next steps)
+Redis is automatically installed in self-hosted environments by the Dapr CLI as part of the initialization process. You are all set and can skip to the [next steps](#next-steps)
 {{% /codetab %}}
 
 {{% codetab %}}
@@ -125,9 +125,12 @@ spec:
     secretKeyRef:
       name: redis
       key: redis-password
+  # uncomment below for connecting to redis cache instances over TLS (ex - Azure Redis Cache)
+  # - name: enableTLS
+  #   value: true 
 ```
 
-This example uses the the kubernetes secret that was created when setting up a cluster with the above instructions.
+This example uses the kubernetes secret that was created when setting up a cluster with the above instructions.
 
 {{% alert title="Other stores" color="primary" %}}
 If using a state store other than Redis, refer to the [supported state stores]({{< ref supported-state-stores >}}) for information on what options to set.
@@ -153,9 +156,12 @@ spec:
     secretKeyRef:
       name: redis
       key: redis-password
+ # uncomment below for connecting to redis cache instances over TLS (ex - Azure Redis Cache)
+  # - name: enableTLS
+  #   value: true 
 ```
 
-This example uses the the kubernetes secret that was created when setting up a cluster with the above instructions.
+This example uses the kubernetes secret that was created when setting up a cluster with the above instructions.
 
 {{% alert title="Other stores" color="primary" %}}
 If using a pub/sub message broker other than Redis, refer to the [supported pub/sub message brokers]({{< ref supported-pubsub >}}) for information on what options to set.
@@ -179,6 +185,9 @@ spec:
     value: <HOST>
   - name: redisPassword
     value: <PASSWORD>
+  # uncomment below for connecting to redis cache instances over TLS (ex - Azure Redis Cache)
+  # - name: enableTLS
+  #   value: true 
 ```
 
 ```yaml
@@ -195,6 +204,9 @@ spec:
     value: <HOST>
   - name: redisPassword
     value: <PASSWORD>
+  # uncomment below for connecting to redis cache instances over TLS (ex - Azure Redis Cache)
+  # - name: enableTLS
+  #   value: true 
 ```
 
 ## Apply the configuration
